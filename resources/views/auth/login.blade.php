@@ -1,7 +1,11 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
+    <x-jet-authentication-card class="shadow-xl shadow-white">
+        
         <x-slot name="logo">
+            <div class="bg-white p-2 rounded-full shadow-orange-500 shadow-xl ">
             <x-jet-authentication-card-logo />
+        </div>
+
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -28,7 +32,7 @@
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="ml-2 text-sm text-darkorange">{{ __('Remember me') }}</span>
                 </label>
             </div>
 

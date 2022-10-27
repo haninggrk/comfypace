@@ -19,6 +19,7 @@ class RewardController extends Controller
         return view('showReward')->with('rewardList',reward::all());
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *

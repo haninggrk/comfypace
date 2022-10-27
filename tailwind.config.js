@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -10,6 +11,7 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        './vendor/filament/**/*.blade.php',
     ],
 
     theme: {
@@ -17,8 +19,19 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+
+            colors: {
+                'startorange' : '#FAB146',
+                'darkorange' : '#F67F22',
+                danger: colors.rose,
+                primary: colors.blue,
+                success: colors.green,
+                warning: colors.yellow,
+            },
         },
+
+
     },
 
-    plugins: [require('@tailwindcss/aspect-ratio'),require('@tailwindcss/forms'), require('@tailwindcss/typography'),],
+    plugins: [require('@tailwindcss/aspect-ratio'), require('@tailwindcss/forms'), require('@tailwindcss/typography'),],
 };

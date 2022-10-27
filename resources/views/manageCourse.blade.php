@@ -6,32 +6,42 @@
             {{ __('Manage Course') }}
         </h2>
     </x-slot>
-    
-        
-    
+
+
+
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <button id="myBtn"  class=" mb-5 bg-indigo-500 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Add Course</button> 
-            <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="flex items-center justify-between">
+          <span class=" text-3xl font-medium mb-5" style="justify-self: start">Course List</span>
+
+          <x-jet-button id="myBtn"  class="ml-5 mb-5 py-2 md:p-2 text-md md:text-md">+ Add Course</x-jet-button>
+          </div>
+          <ul role="list" class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
                 @foreach ($courseList as $course )
                 <li class="relative">
-                  <a href="{{route('courses.show',$course->id)}}"><div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                    <img src="https://www.sragenkab.go.id/assets/images/image-not-available-.jpg" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
-                    <button type="button" class="absolute inset-0 focus:outline-none">
-                      <span class="sr-only"></span>
-                    </button>
-                  </div></a>
-                  <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{$course->course}}</p>
-                  <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{$course->code}}</p>
+                  <div class="bg-white p-4 rounded-md shadow-md">
+                  
+                    <div class="group block w-full aspect-video rounded-lg bg-gray-200 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                      <a class="hover:opacity-75 " href="{{route('courses.show',$course->id)}}">
+                      <img src="{{$course->img ?? "https://www.sragenkab.go.id/assets/images/image-not-available-.jpg"}}" alt="" class="object-contain pointer-events-none ">
+                      </a>
+                  </div>
+                  <div class="grid grid-cols-2 items-center mt-2  max-w-full">
+                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-orange-500 truncate pointer-events-none">{{$course->course}}</p>
+                  <p class="block text-sm font-medium text-gray-800 pointer-events-none">{{$course->code}}</p></div>
+             
+                  </div>
+                </div>
                 </li>
-                @endforeach
               
+                @endforeach
+
                 <!-- More files... -->
               </ul>
         </div>
 </body>
     </div>
-    
+
 </x-app-layout>
 
 
@@ -109,7 +119,7 @@
                           <label for="first-name" class="block text-sm font-medium text-gray-700">Course Code</label>
                           <input type="text" name="code" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
-            
+
                         <div class="col-span-6 sm:col-span-3">
                           <label for="last-name" class="block text-sm font-medium text-gray-700">Course Name</label>
                           <input type="text" name="course" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
@@ -118,6 +128,10 @@
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Course Description</label>
                           <input type="text" name="description" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
+                          <div class="col-span-6 sm:col-span-6">
+                              <label for="email-address" class="block text-sm font-medium text-gray-700">Course Image</label>
+                              <input type="text" name="image" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Total Meets</label>
                           <input type="number" name="totalmeets" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
@@ -130,8 +144,8 @@
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Application</label>
                           <input type="text" name="application" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
-            
-            
+
+
                         <div class="col-span-6 sm:col-span-3">
                           <label for="country" class="block text-sm font-medium text-gray-700">Level</label>
                           <select id="country" name="level" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -148,12 +162,12 @@
                             @endforeach
                           </select>
                         </div>
-                       
-                       
+
+
                   </div>
                 </div>
               </div>
-            
+
             </div>
           </div>
         </div>

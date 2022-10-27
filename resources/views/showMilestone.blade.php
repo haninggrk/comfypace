@@ -6,21 +6,99 @@
         </h2>
     </x-slot>
     
+
         
     
     <div class="py-12">
-      
+    
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                
+      {{-- bread --}}
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="flex mb-5 " aria-label="Breadcrumb">
+  <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
+  <li class="flex">
+  <div class="flex items-center">
+  <a href="#" class="text-gray-400 hover:text-gray-500">
+  <!-- Heroicon name: solid/home -->
+  <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+  </svg>
+  <span class="sr-only">Home</span>
+  </a>
+  </div>
+  </li>
+ 
+  <li class="flex">
+    <div class="flex items-center">
+    <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+    </svg>
+    <a href="" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page">{{$milestone->project->course->course}}</a>
+    </div>
+    </li>
+
+  <li class="flex">
+  <div class="flex items-center">
+  <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+  </svg>
+  <a href="{{route('project.show',$milestone->project->id)}}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">{{$milestone->project->project_title}}</a>
+  </div>
+  </li>
+ 
+  <li class="flex">
+  <div class="flex items-center">
+  <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+  </svg>
+  <a href="#" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page">{{$milestone->milestone}}</a>
+  </div>
+  </li>
+  </ol>
+ </nav>
+
+ {{-- bread --}}
           <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-5">
             <div class="px-4 py-5 sm:px-6">
+              <div class="flex justify-between items-center">
+                <div>
               <h3 class="text-lg leading-6 font-medium text-gray-900">{{$milestone->milestone}} <span class="text-green-600">({{$milestone->point}} Point)</span></h3>
-              <p class="mt-1 max-w-2xl text-sm text-gray-500">Resource: {{$milestone->studentmodul_url}}</p>
-              <p class="mt-1 max-w-2xl text-sm text-gray-500">{{$milestone->description}}</p>
+              <p class="mt-1 max-w-2xl text-sm text-gray-500">Resource: {{$milestone->studentmodul_url??'-'}}</p>
+              <p class="mt-1 max-w-2xl text-sm text-gray-500">{{$milestone->description ??'This milestone has no descrption' }}</p>
+                </div>
+                <a href="{{route('raiseHand')}}">
+                  
+                <div class="text-center                   @if(Auth::user()->is_raised_hand == 0)
+                  hover:bg-gray-200 
+                    @else
+                  bg-gray-200 
+                    @endif
+                  rounded-md p-2">
+                  <img class="h-12 w-12 mx-auto" src="https://img.icons8.com/emoji/344/raised-hand-emoji.png">
+                  @if(Auth::user()->is_raised_hand == 0)
+                  <span>Raise Hand</span>
+                  @else
+                  <span>Lower Hand</span>
+                  @endif
+                </div>
+              </a>
+            </div>
             </div>
          
         </div>
-        <div class="video-container mt-3">
-          <iframe class="video" src="{{$milestone->video_url}}" allowfullscreen></iframe>
+        <div class="video-container mt-3 overflow-hidden relative">
+          <div class="absolute w-full @if(str_contains($milestone->video_url,'blockly')) z-10 top-0 bg-white @endif" style="height:60px;"></div>
+          <iframe id="iframesoal"  class="video" style="" src="{{$milestone->video_url}}?modestbranding=1" sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation" allowfullscreen></iframe>
+          
+          <div id="youtube-player"
+      data-video="0s01jpQuOkM"
+      data-startseconds="30"
+      data-height="480"
+      data-width="640">
+</div>
+
+
       </div>
 
           
@@ -106,3 +184,9 @@
   border: 0;
 }
 </style>
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script><script>
+    $("#iframesoal").contents().find("#title").remove();
+</script>

@@ -24,12 +24,8 @@ class CreateProjectMilestonesTable extends Migration
             $table->string('video_url')->nullable();
             $table->string('quiz_name)')->nullable();
             $table->unsignedBigInteger('orderno')->default(1);
-
-
-
-
-
-
+            $table->string('video_start')->nullable();
+            $table->string('video_end')->nullable();
 
         });
     }

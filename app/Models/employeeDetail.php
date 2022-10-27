@@ -36,6 +36,11 @@ class employeeDetail extends Model
         return $this->belongsTo(EmployeePosition::class, 'position_id', 'id');
     }
 
+    public function role()
+    {
+        return $this->belongsTo(EmployeePosition::class, 'position_id', 'id');
+    }
+
     public function classes(){
         return $this->hasMany(Classes::class, 'supervisor_id', 'id');
     }

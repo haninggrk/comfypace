@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProjectMilestone;
+use App\Models\User;
+
 use Auth;
 class MilestoneController extends Controller
 {
@@ -35,6 +37,24 @@ class MilestoneController extends Controller
      */
     public function store(Request $request)
     {   
+
+        $str_time = $request->video_start;
+
+        $str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $str_time);
+        
+        sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+        
+        $time_seconds = $hours * 3600 + $minutes * 60 + $seconds;
+
+
+        $str_time = $request->video_end;
+
+        $str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $str_time);
+        
+        sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+        
+        $time_seconds2 = $hours * 3600 + $minutes * 60 + $seconds;
+
         $milestone = new ProjectMilestone;
         $milestone->video_url = $request->video_url;
         $milestone->studentmodul_url = $request->studentmodul_url;
@@ -42,6 +62,10 @@ class MilestoneController extends Controller
         $milestone->description = $request->description;
         $milestone->point = $request->point;
         $milestone->project_id= $request->project_id;
+        $milestone->orderno = $request->orderno;
+        $milestone->video_start =  $time_seconds;
+        $milestone->video_end = $time_seconds2;
+
         $milestone->save();
         return back();
     }
@@ -72,9 +96,27 @@ class MilestoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function raiseHand()
     {
-        //
+        if(Auth::user()->is_raised_hand == 0){
+            Auth::user()->is_raised_hand = 1;
+            Auth::user()->save();
+        }else{
+            Auth::user()->is_raised_hand = 0;
+            Auth::user()->save();
+        }
+        return back();
+
+    }
+
+    public function destroyHand($id)
+    {
+        $user = User::find($id);
+        $user->is_raised_hand = 0;
+        $user->save();
+
+        return back();
+
     }
 
     /**

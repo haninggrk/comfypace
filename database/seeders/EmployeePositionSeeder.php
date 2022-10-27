@@ -14,21 +14,26 @@ class EmployeePositionSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('employee_positions')->insert([
+            'id' => 2,
             'position'=>'Teacher',
             'description'=>'',
         ]);
         DB::table('employee_positions')->insert([
-            'position'=>'Supervisor',
-            'description'=>'',
-        ]);
-        DB::table('employee_positions')->insert([
+            'id' => 3,
             'position'=>'Admin',
             'description'=>'',
         ]);
-        DB::table('employee_positions')->insert([
-            'position'=>'Trainee',
-            'description'=>'',
-        ]);
+
+//        DB::table('employee_positions')->insert([
+//            'position'=>'Supervisor',
+//            'description'=>'',
+//        ]);
+
+//        DB::table('employee_positions')->insert([
+//            'position'=>'Trainee',
+//            'description'=>'',
+//        ]);
     }
 }

@@ -6,19 +6,25 @@
             {{ __($course->course) }}
         </h2>
     </x-slot>
-    
-        
-   
+
+
+    @php
+    $items = Array('https://i0.wp.com/calmatters.org/wp-content/uploads/2021/08/class-size.jpg?fit=2266%2C1322&ssl=1','https://s3-ap-south-1.amazonaws.com/blogmindler/bloglive/wp-content/uploads/2022/03/29171405/blog-4-770x385.png','https://news.iium.edu.my/wp-content/uploads/2022/01/blended-learning-c sifyme-1.jpg');
+    @endphp
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <h3 class="text-3xl mb-2">Manage Class</h3>          <button id="myBtn"  class=" mb-5 bg-indigo-500 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Add Class</button> 
+          <div class="flex items-center justify-between">
+            <span class=" text-3xl font-medium mb-5" style="justify-self: start">Class List</span>
+  
+            <x-jet-button id="myBtn"  class="ml-5 mb-5 py-2 md:p-2 text-md md:text-md">+ Add Class</x-jet-button>
+            </div>
             <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                 @foreach ($classList as $class)
-                
-                <li class="relative">
+
+                {{-- <li class="relative">
                  <a href="{{route('classes.show',$class->id)}}">
                   <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                    <img src="https://www.sragenkab.go.id/assets/images/image-not-available-.jpg" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
+                    <img src="https://i0.wp.com/calmatters.org/wp-content/uploads/2021/08/class-size.jpg?fit=2266%2C1322&ssl=1" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
                     <button type="button" class="absolute inset-0 focus:outline-none">
                       <span class="sr-only"></span>
                     </button>
@@ -26,34 +32,73 @@
                 </a>
                   <a href=""><p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{$class->classname}}</p></a>
                   <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{$class->supervisor->name}}</p>
+                </li> --}}
+
+
+                <li class="relative">
+                  <div class="bg-white p-4 rounded-md shadow-md">
+                  @php
+                  $random = $items[fmod($class->id,3)];
+                  @endphp
+                    <div class="group block w-full aspect-video rounded-lg bg-gray-200 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                      <a class="hover:opacity-75 " href="{{route('classes.show',$class->id)}}">
+                      <img src="{{$class->img ?? $random}}" alt="" class="object-contain pointer-events-none ">
+                      </a>
+                  </div>
+                  <div class="grid grid-cols-2 items-center mt-2  max-w-full">
+                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-orange-500 truncate pointer-events-none">{{$class->classname}}</p>
+                  <p class="block text-sm font-medium text-gray-800 pointer-events-none">{{$class->supervisor->name}}</p></div>
+             
+                  </div>
+                </div>
                 </li>
+
                 @endforeach
-              
+
                 <!-- More files... -->
               </ul>
-              <h3 class="text-3xl mt-5 mb-2">Manage Project</h3>
-              <button id="myBtn2"  class=" mb-5 bg-indigo-500 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Add Project</button> 
+              <div class="flex items-center mt-16 justify-between">
+                <span class=" text-3xl font-medium mb-5" style="justify-self: start">Project List</span>
+      
+                <x-jet-button id="myBtn2"  class="ml-5 mb-5 py-2 md:p-2 text-md md:text-md">+ Add Project</x-jet-button>
+                </div>
               <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                 @foreach ($projectList as $project)
-                <li class="relative">
+                {{-- <li class="relative">
                   <a href="{{route('project.show',$project->id)}}"><div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                    <img src="https://www.sragenkab.go.id/assets/images/image-not-available-.jpg" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
+                    <img src="{{$project->image ?? "https://www.sragenkab.go.id/assets/images/image-not-available-.jpg"}}" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
                     <button type="button" class="absolute inset-0 focus:outline-none">
                       <span class="sr-only"></span>
                     </button>
                   </div>
                   <a href=""><p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{$project->project_title}}</p></a>
                   <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{$project->description}}</p>
+                </li> --}}
+
+
+                <li class="relative">
+                  <div class="bg-white p-4 rounded-md shadow-md">
+                    <div class="group block w-full aspect-video rounded-lg bg-gray-200 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                      <a class="hover:opacity-75 " href="{{route('project.show',$project->id)}}">
+                      <img src="{{$project->img ?? 'https://www.seekpng.com/png/detail/906-9060628_project-manager-animation.png'}}" alt="" class="object-contain pointer-events-none ">
+                      </a>
+                  </div>
+                  <div class="grid grid-cols-2 items-center mt-2  max-w-full">
+                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-orange-500 truncate pointer-events-none">{{$project->project_title}}</p>
+             
+                  </div>
+                </div>
                 </li>
+
                 @endforeach
-              
+
                 <!-- More files... -->
               </ul>
-              
+
         </div>
 </body>
     </div>
-    
+
 </x-app-layout>
 
 
@@ -148,7 +193,7 @@
                           <input value="{{$course->id}}" name="course" readonly type="hidden" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                         </div>
-                 
+
                         <div class="col-span-6 sm:col-span-2">
                           <label for="country" class="block text-sm font-medium text-gray-700">Location</label>
                           <select id="country" name="location" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -157,7 +202,7 @@
                             @endforeach
                           </select>
                         </div>
-            
+
                         <div class="col-span-6 sm:col-span-2">
                           <label for="country" class="block text-sm font-medium text-gray-700">Supervisor</label>
                           <select id="country" name="supervisor" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -175,12 +220,12 @@
                             @endforeach
                           </select>
                         </div>
-                       
+
                           </div>
                         </div>
-           
+
               </div>
-            
+
             </div>
           </div>
         </div>
@@ -198,7 +243,7 @@
 
 
 
-      
+
     </div>
   </div>
 </div>
@@ -277,13 +322,13 @@
                           <input value="{{$course->id}}" name="course" readonly type="hidden" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                         </div>
-                 
-                       
+
+
                           </div>
                         </div>
-           
+
               </div>
-            
+
             </div>
           </div>
         </div>

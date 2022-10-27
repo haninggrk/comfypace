@@ -53,6 +53,7 @@ class CourseController extends Controller
         $course = new course;
         $course->code = $request->code;
         $course->course = $request->course;
+        $course->img = $request->image;
         $course->totalmeets = $request->totalmeets;
         $course->age_requirement = $request->age_requirement;
         $course->level_id = $request->level;

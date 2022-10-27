@@ -46,23 +46,24 @@
              
                    
                       
-                        @if(auth()->user()->progresses->where('milestone_id','=',$project->milestones->sortBy('orderno')->last()->id)->first() != null)
                         <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 inline-flex py-2 text-lg leading-5 font-semibold rounded-full bg-green-100 text-green-600"> Done </span>
+                          <span class="px-2 inline-flex py-2 text-lg leading-5 font-semibold rounded-full bg-green-100 text-green-600"> {{Auth::user()->project->where('project_id','=',$project->id)->first()->status->status ?? "N/A"}} </span>
                         </td>
-                        @elseif(auth()->user()->progresses->where('milestone_id','=',$project->milestones->sortBy('orderno')->first()->id)->first() != null)
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 inline-flex py-2 text-lg leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-600"> On Progress </span>
-                        </td>
-                        @endif
                       
                         <td class="px-6 py-4 whitespace-nowrap">
                          
                           <div class="text-sm text-gray-900">{{array_sum(collect($project->milestones->whereIn('id',(Auth::user()->progresses->pluck('milestone_id')->toArray())))->pluck('point')->toArray())}}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                         
+                         @if(Auth::user()->project->where('project_id','=',$project->id)->first())
+                          @if(Auth::user()->project->where('project_id','=',$project->id)->first()->status->status == "Ended")
+                         <span> <div class="text-sm text-gray-800">Project not avaliable</div></span>
+                         @else
                          <a href="{{route('project.show',$project->id)}}"> <div class="text-sm text-blue-700">Open Project</div></a>
+                         @endif
+                         @else
+                         <a href="{{route('project.show',$project->id)}}"> <div class="text-sm text-blue-700">Open Project</div></a>
+                         @endif
                         </td>
                       
                       </tr>
@@ -117,25 +118,25 @@
 				<tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
 					<th class="p-3 text-left">Name</th>
 					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Status</th>
+                    <th class="p-3 text-left">Add Point</th>
 					<th class="p-3 text-left" width="110px">Actions</th>
 				</tr>
 				<tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                 <th class="p-3 text-left">Name</th>
 					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Status</th>
+                    <th class="p-3 text-left">Add Point</th>
 					<th class="p-3 text-left" width="110px">Actions</th>
 				</tr>
                 <tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                 <th class="p-3 text-left">Name</th>
 					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Status</th>
+                    <th class="p-3 text-left">Add Point</th>
                   <th class="p-3 text-left" width="110px">Actions</th>
               </tr>
                 <tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                 <th class="p-3 text-left">Name</th>
 					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Status</th>
+                    <th class="p-3 text-left">Add Point</th>
                   <th class="p-3 text-left" width="110px">Actions</th>
               </tr>
 			</thead>
@@ -146,7 +147,19 @@
 				<tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
 					<td class="border-grey-light border hover:bg-gray-100 p-3">{{$student->name}}</td>
 					<td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{{$student->studentDetail->school->school}}</td>
-					<td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{{$student->studentDetail->status_id}}</td>
+					<td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
+          <form action="{{route('point.store')}}" method="POST">
+              @csrf
+            <input type="hidden" name="student_id" value="{{$student->id}}">
+            <div class="mb-1">
+              Point: 
+            <input type="number" name="point">
+</div><div>
+  Note: 
+            <input type="text" name="note"></div>
+            <button type="submit" class="mb-5 inline-block bg-indigo-500 mt-2 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Add</button> 
+          </form>
+          </td>
           
          
           

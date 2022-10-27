@@ -79,4 +79,18 @@ class User extends Authenticatable
     public function SupClasses(){
         return $this->hasMany(Classes::class,'supervisor_id');
     }
+    public function project(){
+        return $this->hasMany(StudentProject::class,'student_id');
+    }
+    public function RewardTransaction(){
+        return $this->hasMany(StudentRewardTransaction::class,'student_id');
+    }
+
+    public function roleName(){
+        if($this->role == 1){
+        return $this->EmployeeDetail->employee_position->position;
+        }else{
+            return 'Student';
+        }
+    }
 }

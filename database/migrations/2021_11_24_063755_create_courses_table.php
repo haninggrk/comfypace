@@ -17,6 +17,7 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->string('course');
+            $table->string('img')->nullable();
             $table->string('totalmeets');
             $table->string('age_requirement');
             $table->unsignedBigInteger('level_id');

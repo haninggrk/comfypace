@@ -26,6 +26,7 @@ return new class extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('student_detail_id')->nullable();
             $table->unsignedBigInteger('employee_detail_id')->nullable();
+            $table->boolean('is_raised_hand')->nullable();
             
         });
     }
