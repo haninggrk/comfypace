@@ -1,11 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <a href="{{route('reward.index')}}">
-            <button type="button"
-                    class="inline-block mr-2 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Back
-            </button>
-        </a>
+
 
         <h2 class="font-semibold text-xl inline-block text-gray-800 leading-tight">
             {{ Auth::user()->name }}
@@ -15,7 +10,47 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+            <nav class="flex mb-5 " aria-label="Breadcrumb">
+                <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
+                <li class="flex">
+                <div class="flex items-center">
+                <a href="{{route('reward.index')}}" class="text-gray-400 hover:text-gray-500">
+                <!-- Heroicon name: solid/home -->
+                <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+                <span class="sr-only">Home</span>
+                </a>
+                </div>
+                </li>
+               
+                <li class="flex">
+                  <div class="flex items-center">
+                  <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                  </svg>
+                    {{-- {{$project->course->course}} --}}
+                    {{-- {{Auth::user()->ClassMembers->where('class_id') }} --}}
+                    @if(Auth::user()->role == 2)
+                
+                    <a href="" class="ml-4 text-sm font-medium text-orange-500 hover:text-orange-600" >
+                        Shopping Cart
+                    </a>
+        
+                    @elseif(Auth::user()->role == 1)
+                    <a href="{{route('classes.show', request()->get('class'))}}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" >
+        
+                   {{Auth::user()->SupClasses->where('id',request()->get('class'))->first()->classname}}
+                  </a>
+        
+                    @endif
+                  </div>
+                  </li>
+              
+    
+          
+                </ol>
+               </nav>
             <section class="bg-gray-50 relative w-full h-64 rounded-md"
                      style="background-image: url('https://fotografika.rama-adi.dev/assets/img/19052022-header-photo.jpeg'); background-size: cover; background-position: center">
                 <div class="h-full w-full absolute bg-gray-900 opacity-80 top-0 left-0 rounded-md"></div>

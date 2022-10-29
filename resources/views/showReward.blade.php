@@ -15,7 +15,25 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+            <nav class="flex mb-5 " aria-label="Breadcrumb">
+                <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
+                <li class="flex">
+                <div class="flex items-center">
+                <a href="{{route('dashboard')}}" class="text-orange-500 hover:text-orange-600">
+                <!-- Heroicon name: solid/home -->
+                <svg class="flex-shrink-0 py-3 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+                <span class="sr-only">Home</span>
+                </a>
+                </div>
+                </li>
+               
+     
+    
+          
+                </ol>
+               </nav>
             <section class="bg-gray-50 relative w-full h-64 rounded-md"
                      style="background-image: url('https://fotografika.rama-adi.dev/assets/img/19052022-header-photo.jpeg'); background-size: cover; background-position: center">
                 <div class="h-full w-full absolute bg-gray-900 opacity-80 top-0 left-0 rounded-md"></div>

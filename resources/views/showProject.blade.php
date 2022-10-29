@@ -20,7 +20,7 @@
         <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
         <li class="flex">
         <div class="flex items-center">
-        <a href="#" class="text-gray-400 hover:text-gray-500">
+        <a href="{{route('dashboard')}}" class="text-gray-400 hover:text-gray-500">
         <!-- Heroicon name: solid/home -->
         <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
@@ -35,12 +35,32 @@
           <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
           </svg>
-          <a href="" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page">
-            {{$project->course->course}}
+            {{-- {{$project->course->course}} --}}
             {{-- {{Auth::user()->ClassMembers->where('class_id') }} --}}
-            {{-- {{Auth::user()->ClassMembers->where('class_id',$project->course->classes->pluck('id')->intersect(Auth::user()->ClassMembers->pluck('class_id'))->first())->first()->class->classname}} --}}
-            
+            @if(Auth::user()->role == 2)
+            @php
+            $classRn = Auth::user()->ClassMembers->where('class_id',$project->course->classes->pluck('id')->intersect(Auth::user()->ClassMembers->pluck('class_id'))->first())->first()->class
+           @endphp
+            <a href="{{route('classes.show',$classRn->id)}}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" >
+              {{$classRn->classname}}
+            </a>
+
+            @elseif(Auth::user()->role == 1 and Auth::user()->EmployeeDetail->role->position=="Teacher")
+              <a href="{{route('classes.show', request()->get('class'))}}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" >
+
+            {{Auth::user()->SupClasses->where('id',request()->get('class'))->first()->classname}}
+            </a>
+          @else
+          @if(request()->get('class') != null)
+          <a href="{{route('classes.show', request()->get('class'))}}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" >
+            {{$classList->where('id',request()->get('class'))->first()->classname}}
           </a>
+          @else
+          <a href="{{route('courses.show', $project->course->id)}}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" >
+            {{$project->course->course}}
+          </a>
+          @endif
+            @endif
           </div>
           </li>
       
@@ -49,7 +69,7 @@
         <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
         </svg>
-        <a href="{{route('project.show',$project->id)}}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">{{$project->project_title}}</a>
+        <a href="{{route('project.show',$project->id)}}" class="ml-4 text-sm font-medium text-orange-500 hover:text-orange-600">{{$project->project_title}}</a>
         </div>
         </li>
        
@@ -60,26 +80,26 @@
        {{-- bread --}}
 
 
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class=" bg-gradient-to-l from-startorange to-darkorange shadow overflow-hidden sm:rounded-lg">
   <div class="px-4 py-5 sm:px-6">
-    <h3 class="text-lg leading-6 font-medium text-gray-900">Project Information</h3>
-    <p class="mt-1 max-w-2xl text-sm text-gray-500">{{$project->course->course}}</p>
+    <h3 class="text-lg leading-6 font-medium text-white">Project Information</h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-50">{{$project->course->course}}</p>
   </div>
   <div class="border-t border-gray-200">
     <dl>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">Project Name</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$project->project_title}}</dd>
       </div>
-      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">Project Description</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$project->description}}</dd>
       </div>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">Project Example URL</dt>
         <dd class="mt-1 text-sm  mt-5text-gray-900 sm:mt-0 sm:col-span-2"><a>{{$project->example_url}}</a></dd>
       </div>
-      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">Application</dt>
         <dd class="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2"><a href={{$project->application}}>{{$project->application}}</a></dd>
       </div>
@@ -92,20 +112,21 @@
  @if(Auth::user()->role == 1)
 <div class="flex items-center justify-between mt-5 ">
   <span class="text-3xl font-medium" style="justify-self: start">Milestone</span>
-  <x-jet-button id="myBtn" style="justify-items: end" class="">Add Milestone</x-jet-button> </div>
+  <x-jet-button id="myBtn" style="justify-items: end" class=""> Add Milestone</x-jet-button> </div>
 @endif
 @if(Auth::user()->role==2)
-<div class="flex flex-col mt-12">
-  
+
+<div class="flex flex-col mt-8">
+  <span class="text-3xl font-medium mb-5" style="justify-self: start">Your Milestone</span>
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
+          <thead class=" bg-gradient-to-l from-startorange to-darkorange">
             <tr>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Milestone</th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Point</th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Open Detail</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Milestone</th>
+              <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Point</th>
+              <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Open Detail</th>
 
             </tr>
           </thead>
@@ -166,11 +187,11 @@
     @else
     
     @if(Auth::user()->progresses->where('milestone_id','=',$milestone->id)->first() != null and Auth::user()->role == 2)
-    <tr class="bg-white">
+    <tr class="@if($loop->even) bg-gray-50 @endif bg-white">
       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{($loop->index )+1}}. {{$milestone->milestone}}</td>
-      <td class="px-6 py-4 whitespace-nowrap text-sm text-green-700">{{$milestone->point}}</td>
+      <td class="px-6 py-4 whitespace-nowrap  text-center text-sm text-green-700">{{$milestone->point}}</td>
 
-      <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+      <td class="px-6 text-center py-4 whitespace-nowrap  text-sm font-medium">
         <a href="{{route('milestone.show',$milestone->id)}}" class="text-indigo-600 hover:text-indigo-900">Open</a>
       </td>
     </tr>
@@ -200,11 +221,11 @@
               <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                   <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-gradient-to-l from-startorange to-darkorange">
                       <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Milestone</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Point</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Open Detail</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Milestone</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Point</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Open Detail</th>
 
                       </tr>
                     </thead>
@@ -239,21 +260,21 @@
               <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                   <table id="goHere" class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-gradient-to-l from-startorange to-darkorange text-white">
                       <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
-                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Student</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"></th>
+                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Status</th>
 
                         @foreach($milestoneList as $milestone)
-                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">{{$milestone->orderno}}</th>
+                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">{{$milestone->orderno}}</th>
                         @endforeach
                        
                       </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                       @foreach($studentList as $student)
-                      <tr>
+                      <tr class=">@if($loop->even) bg-gray-50 @endif">
                         <td class="px-6 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                             <div class="flex-shrink-0 h-10 w-10">
@@ -268,13 +289,7 @@
                         </td>
 
                         <td>
-                          @if($student->is_raised_hand==1)
-                          <a href="{{route('destroyHand',$student->id)}}">
-                          <div class=" rounded-md py-4 hover:bg-gray-200">
-                          <img class="h-6 w-6 mx-auto" src="https://img.icons8.com/emoji/344/raised-hand-emoji.png">
-                          </div>
-                        </a>
-                          @endif
+                         <livewire:destroy-hand :student=$student />
                         </td>
                         <td class="text-center">
                             @if($student->project->where('project_id','=',$project->id)->first())
@@ -345,8 +360,9 @@
           </div>
           @endif
           @if(Auth::user()->role == 1)
+          @if(Auth::user()->EmployeeDetail->position_id == 1)
           <div class=" items-center justify-between mt-5 ">
-            <span class="text-3xl font-medium block mb-5" style="justify-self: start">Class Progress</span>
+            <span class="text-3xl font-medium block mb-5" style="justify-self: start">Batch Class Progress</span>
             <div class=" flex-col mb-5">
               <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -393,7 +409,7 @@
               </div>
            
             </div>
-      
+      @endif
           @endif
           @foreach($project->course->classes as $class)
           <div id="{{$class->classname}}" class="text-3xl font-medium mb-5" style="display:none"> Class {{$class->classname}}

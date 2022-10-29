@@ -9,7 +9,7 @@
 
 
     @php
-    $items = Array('https://i0.wp.com/calmatters.org/wp-content/uploads/2021/08/class-size.jpg?fit=2266%2C1322&ssl=1','https://s3-ap-south-1.amazonaws.com/blogmindler/bloglive/wp-content/uploads/2022/03/29171405/blog-4-770x385.png','https://news.iium.edu.my/wp-content/uploads/2022/01/blended-learning-c sifyme-1.jpg');
+    $items = Array('https://i0.wp.com/calmatters.org/wp-content/uploads/2021/08/class-size.jpg?fit=2266%2C1322&ssl=1','https://s3-ap-south-1.amazonaws.com/blogmindler/bloglive/wp-content/uploads/2022/03/29171405/blog-4-770x385.png','https://media.istockphoto.com/vectors/classroom-nobody-school-classroom-interior-with-teachers-desk-and-vector-id1130490883?k=20&m=1130490883&s=612x612&w=0&h=l_ZzLt51AARql4IhXhyjwNf_svNTxsnkRxpt6OOmerY=');
     @endphp
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

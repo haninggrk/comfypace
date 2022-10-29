@@ -29,7 +29,7 @@ use App\Http\Controllers\StudentProjectController;
 
 Route::get('/', function () {
     return redirect(route('dashboard'));
-});
+})->name('dashboard');
 
 Route::get('/manage-student', function () {
     return view('manageStudent')

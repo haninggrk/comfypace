@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\ProjectMilestone;
 use App\Models\ClassMember;
+use App\Models\Classes;
+
 use App\Models\User;
 use Auth;
 
@@ -64,7 +66,8 @@ class ProjectController extends Controller
         return view('showProject')
         ->with('project',Project::find($id))
         ->with('milestoneList',ProjectMilestone::where('project_id','=',$id)->orderBy('orderno')->get())
-        ->with('studentList',User::wherein('id',ClassMember::where('class_id','=',$class)->pluck('student_id'))->get());
+        ->with('studentList',User::wherein('id',ClassMember::where('class_id','=',$class)->pluck('student_id'))->get())
+        ->with('classList',Classes::all());
     }
 
     /**

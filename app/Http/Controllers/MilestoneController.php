@@ -96,28 +96,7 @@ class MilestoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function raiseHand()
-    {
-        if(Auth::user()->is_raised_hand == 0){
-            Auth::user()->is_raised_hand = 1;
-            Auth::user()->save();
-        }else{
-            Auth::user()->is_raised_hand = 0;
-            Auth::user()->save();
-        }
-        return back();
-
-    }
-
-    public function destroyHand($id)
-    {
-        $user = User::find($id);
-        $user->is_raised_hand = 0;
-        $user->save();
-
-        return back();
-
-    }
+    
 
     /**
      * Update the specified resource in storage.

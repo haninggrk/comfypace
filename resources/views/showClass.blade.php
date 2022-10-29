@@ -11,17 +11,58 @@
    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <nav class="flex mb-5 " aria-label="Breadcrumb">
+            <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
+            <li class="flex">
+            <div class="flex items-center">
+            <a href="{{route('dashboard')}}" class="text-gray-400 hover:text-gray-500">
+            <!-- Heroicon name: solid/home -->
+            <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+            <span class="sr-only">Home</span>
+            </a>
+            </div>
+            </li>
+           
+            <li class="flex">
+              <div class="flex items-center">
+              <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+              </svg>
+                {{-- {{$project->course->course}} --}}
+                {{-- {{Auth::user()->ClassMembers->where('class_id') }} --}}
+                @if(Auth::user()->role == 2)
+            
+                <a href="{{route('classes.show',$class->id)}}" class="ml-4 text-sm font-medium text-orange-500 hover:text-orange-600" >
+                  {{$class->classname}}
+                </a>
+    
+                @elseif(Auth::user()->role == 1)
+                <a href="{{route('classes.show',$class->id)}}" class="ml-4 text-sm font-medium text-orange-500 hover:text-orange-600" >
+                  {{$class->classname}}
+                </a>
+              </a>
+    
+                @endif
+              </div>
+              </li>
+          
+
+      
+            </ol>
+           </nav>
           <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                   <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+                    <thead class=" bg-gradient-to-l from-startorange to-darkorange">
                       <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Project</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Point Earned</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Project</th>
+                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Progress</th>
+                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Point Earned</th>
+                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Action</th>
 
                       </tr>
                     </thead>
@@ -31,8 +72,12 @@
                       @foreach($class->course->projects as $project)
                       @if($project->milestones->first() != null)
                       @if(auth()->user()->progresses->where('milestone_id','=',$project->milestones->first()->id)->first() != null)
-                      <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                      <tr class="
+                      @if($loop->even)
+                      bg-gray-50
+                      @endif
+                      ">
+                        <td class="px-6 py-4  whitespace-nowrap">
                           <div class="flex items-center">
                             <div class="flex-shrink-0 h-10 w-10">
                               <img class="h-10 w-10 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
@@ -46,15 +91,15 @@
              
                    
                       
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
                           <span class="px-2 inline-flex py-2 text-lg leading-5 font-semibold rounded-full bg-green-100 text-green-600"> {{Auth::user()->project->where('project_id','=',$project->id)->first()->status->status ?? "N/A"}} </span>
                         </td>
                       
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
                          
                           <div class="text-sm text-gray-900">{{array_sum(collect($project->milestones->whereIn('id',(Auth::user()->progresses->pluck('milestone_id')->toArray())))->pluck('point')->toArray())}}</div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
                          @if(Auth::user()->project->where('project_id','=',$project->id)->first())
                           @if(Auth::user()->project->where('project_id','=',$project->id)->first()->status->status == "Ended")
                          <span> <div class="text-sm text-gray-800">Project not avaliable</div></span>
