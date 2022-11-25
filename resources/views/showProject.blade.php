@@ -289,7 +289,9 @@
                         </td>
 
                         <td>
-                         <livewire:destroy-hand :student=$student />
+                          <div>
+                         <livewire:destroy-hand  :studentList=$studentList :student=$student />
+                          </div>
                         </td>
                         <td class="text-center">
                             @if($student->project->where('project_id','=',$project->id)->first())
@@ -329,22 +331,7 @@
                           <div class="text-sm text-gray-900"></div>
                           <div class="text-sm text-gray-500">
                             
-                            @if($student->progresses->where('milestone_id','=',$milestone->id)->first() != null)
-                            <form method="POST" action="{{route('studentprogress.destroy',$student->progresses->where('milestone_id','=',$milestone->id)->first()->id)}}">
-                              <input type="hidden" name="_method" value="DELETE">
-                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                             <input type="hidden" name="point" value="{{$milestone->point}}">
-                            <button type="submit" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800"> ✓ </span></button>
-                            @else
-                            <form method=POST action="{{route('studentprogress.store')}}">
-                              @csrf
-                              <input type="hidden" name="milestone_id" value="{{$milestone->id}}">
-                              <input type="hidden" name="student_id" value="{{$student->id}}">
-                              <input type="hidden" name="point" value="{{$milestone->point}}">
-                            <button type="submit" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800"> X </span></button>
-                            </a>
-                            @endif
-                          </form>
+                            <livewire:open-close-milestone :milestone=$milestone :student=$student />
                           </div>
                         </td>
                         @endforeach
@@ -360,7 +347,7 @@
           </div>
           @endif
           @if(Auth::user()->role == 1)
-          @if(Auth::user()->EmployeeDetail->position_id == 1)
+          @if(Auth::user()->EmployeeDetail->position_id == 3)
           <div class=" items-center justify-between mt-5 ">
             <span class="text-3xl font-medium block mb-5" style="justify-self: start">Batch Class Progress</span>
             <div class=" flex-col mb-5">
@@ -389,12 +376,11 @@
                           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{$class->supervisor->name}}</td>
 
                           <td class="px-6 py-4  whitespace-nowrap  text-sm font-medium">
-                            <a href="https://comfypace.com/milestone/6" class="text-indigo-600 hover:text-indigo-900">
+                           
                               <div class="flex items-center  mb-4">
                                 <input id="default-checkbox" type="checkbox" onclick="showMe('{{$class->classname}}')" name="{{$class->classname}}" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
                             </div>
-                            </a>
                           </td>
                         </tr>
             @endforeach

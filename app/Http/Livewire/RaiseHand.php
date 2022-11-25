@@ -15,10 +15,11 @@ class RaiseHand extends Component
     public function render()
     {
         return view('livewire.raise-hand');
+        
     }
 
     public function mount() {
-
+        
         if(!$this->userId) {
             $this->toggleUser = Auth::user();
         }else {
@@ -28,8 +29,7 @@ class RaiseHand extends Component
 
     public function toggleHand() {
 
-
-        if($this->toggleUser->is_raised_hand === 0) {
+        if($this->toggleUser->is_raised_hand == 0) {
             $this->toggleUser->is_raised_hand = 1;
             $this->toggleUser->save();
         }else {
