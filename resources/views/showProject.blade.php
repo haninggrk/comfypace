@@ -195,6 +195,7 @@
         <a href="{{route('milestone.show',$milestone->id)}}" class="text-indigo-600 hover:text-indigo-900">Open</a>
       </td>
     </tr>
+
   @else
   
   @endif
@@ -209,7 +210,24 @@
 </div>
 </div>
 </div>
+<div class="col-span-6 mt-5 sm:col-span-3">
+  <label for="first-name" class="block text-sm font-medium text-gray-700">Submission</label>
+  <form method="POST" action="{{route('studentproject.store2')}}">
+    @csrf
+  <div class="flex justify-between align-middle gap-4">
+    <input type="hidden" name="project" value="{{$project->id}}">
+    <input type="hidden" name="student" value="{{Auth::user()->id}}">
+    <input type="text" 
+    @if(Auth::user()->project->where('project_id','=',$project->id)->first())
+    value="{{Auth::user()->project->where("project_id",$project->id)->first()->submission_url}}"
+    @endif
+    name="submission_url" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+  <x-jet-button type="submit" class="" style="justify-items: end" class=""> Save </x-jet-button> </div>
+    </form>
 </div>
+</div>
+</div>
+
 @endif
         </div>
        
@@ -289,7 +307,9 @@
                         </td>
 
                         <td>
-                         <livewire:destroy-hand :student=$student />
+                          <div>
+                         <livewire:destroy-hand  :studentList=$studentList :student=$student />
+                          </div>
                         </td>
                         <td class="text-center">
                             @if($student->project->where('project_id','=',$project->id)->first())
@@ -329,22 +349,7 @@
                           <div class="text-sm text-gray-900"></div>
                           <div class="text-sm text-gray-500">
                             
-                            @if($student->progresses->where('milestone_id','=',$milestone->id)->first() != null)
-                            <form method="POST" action="{{route('studentprogress.destroy',$student->progresses->where('milestone_id','=',$milestone->id)->first()->id)}}">
-                              <input type="hidden" name="_method" value="DELETE">
-                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                             <input type="hidden" name="point" value="{{$milestone->point}}">
-                            <button type="submit" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800"> ✓ </span></button>
-                            @else
-                            <form method=POST action="{{route('studentprogress.store')}}">
-                              @csrf
-                              <input type="hidden" name="milestone_id" value="{{$milestone->id}}">
-                              <input type="hidden" name="student_id" value="{{$student->id}}">
-                              <input type="hidden" name="point" value="{{$milestone->point}}">
-                            <button type="submit" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800"> X </span></button>
-                            </a>
-                            @endif
-                          </form>
+                            <livewire:open-close-milestone :milestone=$milestone :student=$student />
                           </div>
                         </td>
                         @endforeach

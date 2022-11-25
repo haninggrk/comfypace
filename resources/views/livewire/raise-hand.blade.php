@@ -1,4 +1,4 @@
-<div>
+<div   >
     <form wire:submit.prevent="toggleHand">
         <button type="submit">
             <div

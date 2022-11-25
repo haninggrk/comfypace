@@ -41,6 +41,7 @@ Route::post('/student/check',[StudentAuthController::class, 'check'])->name('stu
 Route::post('/classmember/delete',[ClassMemberController::class, 'destroy'])->name('classmember.destroy2');
 Route::get('/raisehand',[MilestoneController::class, 'raiseHand'])->name('raiseHand');
 Route::get('/destroyhand/{id}',[MilestoneController::class, 'destroyHand'])->name('destroyHand');
+Route::post('/studentproject/submit',[StudentProjectController::class, 'store2'])->name('studentproject.store2');
 
 
 
@@ -54,7 +55,7 @@ Route::middleware([
 
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('aaa');
 
     Route::resources([
         'students' => StudentDetailController::class,

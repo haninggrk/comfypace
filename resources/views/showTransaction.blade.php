@@ -38,9 +38,9 @@
                     </a>
         
                     @elseif(Auth::user()->role == 1)
-                    <a href="{{route('classes.show', request()->get('class'))}}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" >
-        
-                   {{Auth::user()->SupClasses->where('id',request()->get('class'))->first()->classname}}
+                    <a href="" class="ml-4 text-sm font-medium text-orange-500 hover:text-orange-600" >
+                      Shopping Cart
+
                   </a>
         
                     @endif
@@ -79,6 +79,12 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reward Name</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            @if(Auth::user()->role == 1)
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">School</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student Name</th>
+
+                            @endif
+                            
                             <th scope="col" class="relative px-6 py-3">
                               <span class="sr-only">Cancel</span>
                             </th>
@@ -86,6 +92,7 @@
                         </thead>
                         <tbody>
                           <!-- Odd row -->
+                          @if(Auth::user()->role == 2)
                           @foreach(Auth::user()->RewardTransaction as $reward)
                           <tr class="bg-white">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$reward->reward->reward}}</td>
@@ -103,6 +110,24 @@
                             </td>
                           </tr>
                           @endforeach
+                          @endif
+                          @if(Auth::user()->role == 1)
+                          @foreach($transactionList as $reward)
+                          <tr class="bg-white">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$reward->reward->reward}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$reward->reward->price}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@if($reward->status_id == 0)On Progress @else Done @endif</td>
+
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$reward->student->StudentDetail->school->school}}</td>
+
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$reward->student->name}}</td>
+
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                              Confirm
+                            </td>
+                          </tr>
+                          @endforeach
+                          @endif
               
                        
               

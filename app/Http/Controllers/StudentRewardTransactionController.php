@@ -20,7 +20,7 @@ class StudentRewardTransactionController extends Controller
      */
     public function index()
     {
-        return view('showTransaction');
+        return view('showTransaction')->with('transactionList',StudentRewardTransaction::all());
     }
 
     /**

@@ -15,7 +15,7 @@ class StudentRewardTransaction extends Model
     ];
 
     public function student(){
-        return $this->belongsTo(student::class, 'student_id');
+        return $this->belongsTo(User::class, 'student_id');
     }
 
     public function reward(){

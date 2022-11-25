@@ -12,6 +12,7 @@ class StudentProject extends Model
         'student_id',
         'project_id',
         'status_id',
+        'submission_url',
     ];
 
     public function student(){

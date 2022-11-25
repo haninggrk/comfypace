@@ -51,6 +51,22 @@ class StudentProjectController extends Controller
         return back();
 
     }
+    public function store2(Request $request){
+        
+        if(User::find($request->student)->project->where('id','=',$request->project)->first()){
+            $studentProject = User::find($request->student)->project->where('project_id','=',$request->project)->first();
+            $studentProject->update(['submission_url'=>$request->submission_url]);
+           }else{
+           $studentProject = new StudentProject;
+           $studentProject->student_id = $request->student;
+           $studentProject->status_id = 1;
+           $studentProject->project_id = $request->project;
+           $studentProject->submission_url = $request->submission_url;
+           $studentProject->save();
+           
+           }
+        //    return back();
+    }
 
     /**
      * Display the specified resource.
