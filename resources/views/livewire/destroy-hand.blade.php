@@ -1,4 +1,4 @@
-<div wire:poll.5000ms >
+<div >
         <form wire:submit.prevent="destroyHand">
             @if($is_raised_hand==1)
        <button type="submit">
