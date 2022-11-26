@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\StudentProject;
 use App\Http\Requests\StoreStudentProjectRequest;
 use App\Http\Requests\UpdateStudentProjectRequest;
+use Auth;
 
 class StudentProjectController extends Controller
 {
@@ -17,7 +18,12 @@ class StudentProjectController extends Controller
      */
     public function index()
     {
-        //
+        return view('manageStudentProject', ['studentProjects' => StudentProject::all()]);
+    }
+
+    public function indexStudent()
+    {
+        return view('manageStudentProject', ['studentProjects' => Auth::user()->projects]);
     }
 
     /**
@@ -53,19 +59,26 @@ class StudentProjectController extends Controller
     }
     public function store2(Request $request){
         
-        if(User::find($request->student)->project->where('id','=',$request->project)->first()){
+        if(User::find($request->student)->project->where('project_id','=',$request->project)->first()){
             $studentProject = User::find($request->student)->project->where('project_id','=',$request->project)->first();
-            $studentProject->update(['submission_url'=>$request->submission_url]);
+            $studentProject->update([
+            'submission_url'=>$request->submission_url,
+        ]
+    
+    );
+    $studentProject->submission_title = $request->submission_title;
+    $studentProject->save();
+
            }else{
            $studentProject = new StudentProject;
            $studentProject->student_id = $request->student;
            $studentProject->status_id = 1;
            $studentProject->project_id = $request->project;
            $studentProject->submission_url = $request->submission_url;
+           $studentProject->submission_title = $request->submission_title;
            $studentProject->save();
            
            }
-        //    return back();
     }
 
     /**
@@ -74,9 +87,10 @@ class StudentProjectController extends Controller
      * @param  \App\Models\StudentProject  $studentProject
      * @return \Illuminate\Http\Response
      */
-    public function show(StudentProject $studentProject)
+    public function show($id)
     {
-        //
+        $studentProject = StudentProject::find($id);
+        return view('showStudentProject', ['studentProject' => $studentProject]);
     }
 
     /**

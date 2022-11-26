@@ -19,6 +19,7 @@ class CreateStudentProjectsTable extends Migration
             $table->unsignedBigInteger('student_id');
             $table->text('submission_url')->nullable();
             $table->unsignedBigInteger('project_id');
+            $table->text('submission_title')->nullable();
             $table->unsignedBigInteger('status_id');
         });
     }

@@ -16,10 +16,10 @@ class StudentProject extends Model
     ];
 
     public function student(){
-        return $this->belongsTo(student::class, 'user_id');
+        return $this->belongsTo(User::class, 'student_id');
     }
     public function project(){
-        return $this->belongsTo(project::class, 'project_id');
+        return $this->belongsTo(Project::class, 'project_id');
     }
     public function status(){
         return $this->belongsTo(ProjectStatus::class, 'status_id');

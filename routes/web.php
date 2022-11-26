@@ -16,6 +16,9 @@ use App\Http\Controllers\RewardController;
 use App\Http\Controllers\PointTransactionController;
 use App\Http\Controllers\StudentRewardTransactionController;
 use App\Http\Controllers\StudentProjectController;
+use App\Models\studentDetail;
+use App\Models\StudentProject;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,13 +30,15 @@ use App\Http\Controllers\StudentProjectController;
 |
 */
 
+
 Route::get('/', function () {
-    return redirect(route('dashboard'));
+    return redirect(route('aaa'));
 })->name('dashboard');
+
 
 Route::get('/manage-student', function () {
     return view('manageStudent')
-    ->with('studentList',Student::all())->with('schoolList',school::all());
+    ->with('studentList',studentDetail::all())->with('schoolList',school::all());
 });
 
 Route::get('/student/login',[StudentAuthController::class, 'login'])->name('studentauth.login');
@@ -56,6 +61,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('aaa');
+    Route::get('/profile/myproject',[StudentProjectController::class, 'indexStudent'])->name('submission.indexStudent');
+    Route::get('/profile/myproject/{id}',[StudentProjectController::class, 'show'])->name('submission.show');
+    
+    Route::get('/student/projects',[StudentProjectController::class, 'index'])->name('submission.index');
 
     Route::resources([
         'students' => StudentDetailController::class,

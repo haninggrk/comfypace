@@ -7,5 +7,7 @@
         @endif
     @elseif(Auth::user()->role == 2)
     <meta http-equiv="refresh" content="0; url={{route('classes.index')}}" />
+    @else
+    <meta http-equiv="refresh" content="0; url={{route('login')}}" />
     @endif
 </head>

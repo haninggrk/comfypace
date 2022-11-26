@@ -211,18 +211,25 @@
 </div>
 </div>
 <div class="col-span-6 mt-5 sm:col-span-3">
-  <label for="first-name" class="block text-sm font-medium text-gray-700">Submission</label>
   <form method="POST" action="{{route('studentproject.store2')}}">
     @csrf
-  <div class="flex justify-between align-middle gap-4">
+  <div class="align-middle gap-4">
     <input type="hidden" name="project" value="{{$project->id}}">
     <input type="hidden" name="student" value="{{Auth::user()->id}}">
+    <label for="first-name" class="block text-sm font-medium text-gray-700">Project Title</label>
+    <input type="text" 
+    @if(Auth::user()->project->where('project_id','=',$project->id)->first())
+    value="{{Auth::user()->project->where("project_id",$project->id)->first()->submission_title}}"
+    @endif
+    name="submission_title" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+    
+    <label for="first-name" class="block text-sm font-medium mt-2 text-gray-700">Project URL</label>
     <input type="text" 
     @if(Auth::user()->project->where('project_id','=',$project->id)->first())
     value="{{Auth::user()->project->where("project_id",$project->id)->first()->submission_url}}"
     @endif
     name="submission_url" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-  <x-jet-button type="submit" class="" style="justify-items: end" class=""> Save </x-jet-button> </div>
+  <x-jet-button type="submit" class="mt-2" style="justify-items: end"> Save </x-jet-button> </div>
     </form>
 </div>
 </div>
@@ -365,7 +372,7 @@
           </div>
           @endif
           @if(Auth::user()->role == 1)
-          @if(Auth::user()->EmployeeDetail->position_id == 3)
+          @if(Auth::user()->EmployeeDetail->position_id == 1)
           <div class=" items-center justify-between mt-5 ">
             <span class="text-3xl font-medium block mb-5" style="justify-self: start">Batch Class Progress</span>
             <div class=" flex-col mb-5">
@@ -394,11 +401,12 @@
                           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{$class->supervisor->name}}</td>
 
                           <td class="px-6 py-4  whitespace-nowrap  text-sm font-medium">
-                           
+                            <a href="https://comfypace.com/milestone/6" class="text-indigo-600 hover:text-indigo-900">
                               <div class="flex items-center  mb-4">
                                 <input id="default-checkbox" type="checkbox" onclick="showMe('{{$class->classname}}')" name="{{$class->classname}}" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
                             </div>
+                            </a>
                           </td>
                         </tr>
             @endforeach
