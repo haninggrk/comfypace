@@ -74,6 +74,7 @@ Route::middleware([
         'classes' => ClassController::class,
         'studentprogress' => StudentProgressController::class,
         'employee' => EmployeeDetailController::class,
+        
         'classmember'=>ClassMemberController::class,
         'reward'=>RewardController::class,
         'point'=>PointTransactionController::class,

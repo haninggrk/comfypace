@@ -79,9 +79,9 @@ class StudentDetailController extends Controller
      * @param  \App\Models\studentDetail  $studentDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(studentDetail $studentDetail)
+    public function show($studentDetail)
     {
-        //
+        return view('showStudent')->with('student',User::find($studentDetail));
     }
 
     /**

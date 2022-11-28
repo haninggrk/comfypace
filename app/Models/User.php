@@ -82,6 +82,9 @@ class User extends Authenticatable
     public function project(){
         return $this->hasMany(StudentProject::class,'student_id');
     }
+    public function projects(){
+        return $this->hasMany(StudentProject::class,'student_id');
+    }
     public function RewardTransaction(){
         return $this->hasMany(StudentRewardTransaction::class,'student_id');
     }

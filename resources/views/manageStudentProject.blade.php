@@ -11,9 +11,7 @@
                 @foreach ($studentProjects as $project)
                     <li class="relative">
                         <div class="bg-white p-4 rounded-md shadow-md">
-                            @php
-                                // $random = $items[fmod(4,3)];
-                            @endphp
+                  
                             <a class="hover:opacity-75 " href="{{ route('submission.show', $project->id) }}">
 
                                 <div
