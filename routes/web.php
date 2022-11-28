@@ -29,6 +29,7 @@ use App\Models\StudentProject;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/profile/myproject/{id}',[StudentProjectController::class, 'show'])->name('submission.show');
 
 
 Route::get('/', function () {
@@ -63,7 +64,6 @@ Route::middleware([
         return view('dashboard');
     })->name('aaa');
     Route::get('/profile/myproject',[StudentProjectController::class, 'indexStudent'])->name('submission.indexStudent');
-    Route::get('/profile/myproject/{id}',[StudentProjectController::class, 'show'])->name('submission.show');
     
 
     Route::resources([
