@@ -20,6 +20,7 @@
                             {{ __('Class') }}
                             </div>
                     </x-jet-nav-link>
+                    @auth
                     @if(Auth::user()->role == 1)
                     @if(Auth::user()->EmployeeDetail->position_id == 3)
                     <x-jet-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses')">
@@ -45,6 +46,8 @@
                     </x-jet-nav-link>
                     @endif
                     @endif
+                                        @endauth
+
                     @if(Auth::user()->role == 1)
                     @if(Auth::user()->EmployeeDetail->position_id == 3)
                     <x-jet-nav-link href="{{ route('students.index') }}" :active="request()->routeIs('courses')">
@@ -83,6 +86,7 @@
                             </div>
                     </x-jet-nav-link>
                     @endif
+                    @endauth
                     <x-jet-nav-link href="{{ route('submission.indexStudent') }}" :active="request()->routeIs('courses')">
                       
                           
