@@ -35,6 +35,7 @@ Route::get('/', function () {
     return redirect(route('aaa'));
 })->name('dashboard');
 
+Route::get('/student/projects',[StudentProjectController::class, 'index'])->name('submission.index');
 
 Route::get('/manage-student', function () {
     return view('manageStudent')
@@ -47,7 +48,6 @@ Route::post('/classmember/delete',[ClassMemberController::class, 'destroy'])->na
 Route::get('/raisehand',[MilestoneController::class, 'raiseHand'])->name('raiseHand');
 Route::get('/destroyhand/{id}',[MilestoneController::class, 'destroyHand'])->name('destroyHand');
 Route::post('/studentproject/submit',[StudentProjectController::class, 'store2'])->name('studentproject.store2');
-Route::get('/student/projects',[StudentProjectController::class, 'index'])->name('submission.index');
 
 
 

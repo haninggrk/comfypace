@@ -24,8 +24,9 @@
 
         <div class="min-h-screen" style="background:#F5F7F7"  
         {{-- style="background-image: url('{{asset('background.jpeg')}}') --}}
-        >
+        >   @auth
             @livewire('navigation-menu')
+            @endauth
 
             <!-- Page Heading -->
      
