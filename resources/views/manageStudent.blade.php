@@ -7,47 +7,39 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <button id="myBtn"  class=" mb-5 bg-indigo-500 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Add Student</button> 
-            <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
-			<thead class="text-white">
-				<tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-					<th class="p-3 text-left">Name</th>
-					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Status</th>
-					<th class="p-3 text-left" width="110px">Actions</th>
-				</tr>
-				<tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                <th class="p-3 text-left">Name</th>
-					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Status</th>
-					<th class="p-3 text-left" width="110px">Actions</th>
-				</tr>
-                <tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                <th class="p-3 text-left">Name</th>
-					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Status</th>
-                  <th class="p-3 text-left" width="110px">Actions</th>
-              </tr>
-                <tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                <th class="p-3 text-left">Name</th>
-					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Status</th>
-                  <th class="p-3 text-left" width="110px">Actions</th>
-              </tr>
-			</thead>
-			<tbody class="flex-1 sm:flex-none">
-                
-        @foreach($studentList as $student)
-				<tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-					<td class="border-grey-light border hover:bg-gray-100 p-3">{{$student->name}}</td>
-					<td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{{$student->studentDetail->school->school}}</td>
-					<td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{{$student->studentDetail->status_id}}</td>
-					<td id="editBtn" class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">Edit</td>
-				</tr>
-        @endforeach
-			</tbody>
-		</table>
-    
+          <x-jet-button id="myBtn"  class="mb-5">Add Student</x-jet-button> 
+          
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class=" bg-gradient-to-l from-startorange to-darkorange">
+      <tr>
+          <th scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Name
+          </th>
+          <th scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              School
+          </th>
+          <th scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Email
+          </th>
+
+          <th scope="col" class="relative px-6 py-3">
+              <span class="sr-only">Show</span>
+          </th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Odd row -->
+      <livewire:show-student/>
+
+      <!-- More people... -->
+      </tbody>
+  </table>
+
+
+
         </div>
 </body>
     </div>
@@ -118,7 +110,7 @@
             </svg>
           </div>
           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Add Student</h3>
+            <div class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Add Student</div>
             <div class="mt-2">
               <div class="bg-white sm:rounded-lg ">
                 <div class="">

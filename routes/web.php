@@ -47,6 +47,7 @@ Route::post('/classmember/delete',[ClassMemberController::class, 'destroy'])->na
 Route::get('/raisehand',[MilestoneController::class, 'raiseHand'])->name('raiseHand');
 Route::get('/destroyhand/{id}',[MilestoneController::class, 'destroyHand'])->name('destroyHand');
 Route::post('/studentproject/submit',[StudentProjectController::class, 'store2'])->name('studentproject.store2');
+Route::get('/student/projects',[StudentProjectController::class, 'index'])->name('submission.index');
 
 
 
@@ -64,7 +65,6 @@ Route::middleware([
     Route::get('/profile/myproject',[StudentProjectController::class, 'indexStudent'])->name('submission.indexStudent');
     Route::get('/profile/myproject/{id}',[StudentProjectController::class, 'show'])->name('submission.show');
     
-    Route::get('/student/projects',[StudentProjectController::class, 'index'])->name('submission.index');
 
     Route::resources([
         'students' => StudentDetailController::class,

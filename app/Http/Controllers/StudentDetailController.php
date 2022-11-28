@@ -19,9 +19,7 @@ class StudentDetailController extends Controller
      */
     public function index()
     {
-        return view('manageStudent')
-        ->with('studentList', User::all()->where('role','=',2))
-        ->with('schoolList',School::all());
+        return view('manageStudent')->with('schoolList',School::all());
     }
 
     /**
