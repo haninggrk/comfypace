@@ -16,7 +16,8 @@
 
                                 <div
                                     class="group block w-full aspect-video rounded-lg bg-gray-200 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                                    <img src="https://www.westfield.ma.edu/PersonalPages/draker/edcom/final/sp20/sectionb/A/scratch.png" alt="" class=" object-fill pointer-events-none ">
+                                    <img src="https://uploads.scratch.mit.edu/get_image/project/{{basename($project->submission_url)}}_1920x1080.png">
+                                
                                 </div>
                             </a>
 
