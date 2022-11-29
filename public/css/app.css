@@ -4633,7 +4633,7 @@ select{
   --tw-text-opacity: 1;
   color: rgb(190 18 60 / var(--tw-text-opacity));
 }
-.text-orange-500{
+.text-blue-500{
   --tw-text-opacity: 1;
   color: rgb(249 115 22 / var(--tw-text-opacity));
 }
@@ -4788,7 +4788,7 @@ select{
   --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-.shadow-orange-500{
+.shadow-blue-500{
   --tw-shadow-color: #f97316;
   --tw-shadow: var(--tw-shadow-colored);
 }
@@ -5042,7 +5042,7 @@ select{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
-.hover\:text-orange-600:hover{
+.hover\:text-blue-600:hover{
   --tw-text-opacity: 1;
   color: rgb(234 88 12 / var(--tw-text-opacity));
 }

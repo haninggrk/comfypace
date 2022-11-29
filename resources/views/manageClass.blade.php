@@ -11,7 +11,7 @@
             <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
             <li class="flex">
             <div class="flex items-center">
-            <a href="{{route('dashboard')}}" class="text-orange-500 hover:text-orange-600">
+            <a href="{{route('dashboard')}}" class="text-blue-500 hover:text-blue-600">
             <!-- Heroicon name: solid/home -->
             <svg class="flex-shrink-0 py-3 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
@@ -42,7 +42,7 @@
                       </a>
                   </div>
                   <div class="grid grid-cols-2 items-center mt-2  max-w-full">
-                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-orange-500 truncate pointer-events-none">{{$classMember->class->classname}}</p>
+                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-blue-500 truncate pointer-events-none">{{$classMember->class->classname}}</p>
                   <p class="block text-sm font-medium text-gray-800 pointer-events-none">{{$classMember->class->supervisor->name}}</p></div>
              
                   </div>
@@ -73,7 +73,7 @@
                     </a>
                 </div>
                 <div class="grid grid-cols-2 items-center mt-2  max-w-full">
-                <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-orange-500 truncate pointer-events-none">{{$class->classname}}</p>
+                <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-blue-500 truncate pointer-events-none">{{$class->classname}}</p>
                 <p class="block text-sm font-medium text-gray-800 pointer-events-none">{{$class->supervisor->name}}</p></div>
            
                 </div>

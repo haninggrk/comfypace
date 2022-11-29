@@ -33,12 +33,12 @@
                     {{-- {{Auth::user()->ClassMembers->where('class_id') }} --}}
                     @if(Auth::user()->role == 2)
                 
-                    <a href="" class="ml-4 text-sm font-medium text-orange-500 hover:text-orange-600" >
+                    <a href="" class="ml-4 text-sm font-medium text-blue-500 hover:text-blue-600" >
                         Shopping Cart
                     </a>
         
                     @elseif(Auth::user()->role == 1)
-                    <a href="" class="ml-4 text-sm font-medium text-orange-500 hover:text-orange-600" >
+                    <a href="" class="ml-4 text-sm font-medium text-blue-500 hover:text-blue-600" >
                       Shopping Cart
 
                   </a>

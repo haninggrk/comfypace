@@ -27,7 +27,7 @@
                       </a>
                   </div>
                   <div class="grid grid-cols-2 items-center mt-2  max-w-full">
-                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-orange-500 truncate pointer-events-none">{{$course->course}}</p>
+                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-blue-500 truncate pointer-events-none">{{$course->course}}</p>
                   <p class="block text-sm font-medium text-gray-800 pointer-events-none">{{$course->code}}</p></div>
              
                   </div>

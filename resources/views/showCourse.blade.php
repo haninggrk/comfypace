@@ -46,7 +46,7 @@
                       </a>
                   </div>
                   <div class="grid grid-cols-2 items-center mt-2  max-w-full">
-                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-orange-500 truncate pointer-events-none">{{$class->classname}}</p>
+                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-blue-500 truncate pointer-events-none">{{$class->classname}}</p>
                   <p class="block text-sm font-medium text-gray-800 pointer-events-none">{{$class->supervisor->name}}</p></div>
              
                   </div>
@@ -84,7 +84,7 @@
                       </a>
                   </div>
                   <div class="grid grid-cols-2 items-center mt-2  max-w-full">
-                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-orange-500 truncate pointer-events-none">{{$project->project_title}}</p>
+                  <div class="break-all col-span-2 min-w-0"><p class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-blue-500 truncate pointer-events-none">{{$project->project_title}}</p>
              
                   </div>
                 </div>
