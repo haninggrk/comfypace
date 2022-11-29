@@ -235,7 +235,7 @@
               <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">
                   {{ $transaction->note}}</td>
                  
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">{{ $transaction->point }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-center {{$transaction->point > 0 ? 'text-green-500':'text-gray-500' }} ">{{ $transaction->point }}</td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">{{ $transaction->employee->name }}</td>
 
           </tr>
