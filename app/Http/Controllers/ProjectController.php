@@ -47,7 +47,7 @@ class ProjectController extends Controller
         $project->teachmodul_url = $request->teachmodul;
         $project->example_url = $request->example;
         $project->application = $request->application;
-        $project->image = $request->image;
+        $project->image = $request->img;
         $project->course_id = $request->course;
         $project->save();
         return back();

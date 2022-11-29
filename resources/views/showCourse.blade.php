@@ -298,28 +298,32 @@
                       <div class="grid grid-cols-6 gap-6">
                       <div class="col-span-6 sm:col-span-6">
                           <label for="last-name" class="block text-sm font-medium text-gray-700">Project Title</label>
-                          <input type="text" name="projecttitle" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="projecttitle" id="last-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-6">
                           <label for="last-name" class="block text-sm font-medium text-gray-700">Description</label>
-                          <input type="text" name="description" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="description" id="last-name"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <div class="col-span-6 sm:col-span-6">
+                          <label for="last-name" class="block text-sm font-medium text-gray-700">Image URL</label>
+                          <input type="text" name="img" id="last-name"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Teach Modul (link)</label>
-                          <input type="text" name="teachmodul" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="teachmodul" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Example (link)</label>
-                          <input type="text" name="example" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="example"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Application (link)</label>
-                          <input type="text" name="application" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="application" id="email-address"class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-6">
                           <label for="course" class="block text-sm font-medium text-gray-700">Course</label>
-                          <input value="{{$course->course}}" readonly type="text" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                          <input value="{{$course->id}}" name="course" readonly type="hidden" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input value="{{$course->course}}" readonly type="text" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input value="{{$course->id}}" name="course" readonly type="hidden" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                         </div>
 
