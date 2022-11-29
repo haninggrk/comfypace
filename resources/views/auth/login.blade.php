@@ -2,7 +2,7 @@
     <x-jet-authentication-card class="shadow-xl shadow-white">
         
         <x-slot name="logo">
-            <div class="bg-white p-4 rounded-full shadow-orange-500 shadow-xl ">
+            <div class="bg-white p-4 rounded-full shadow-blue-500 shadow-xl ">
             <x-jet-authentication-card-logo />
         </div>
 

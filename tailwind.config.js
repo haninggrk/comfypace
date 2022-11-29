@@ -21,8 +21,8 @@ module.exports = {
             },
 
             colors: {
-                'startorange' : '#FAB146',
-                'darkorange' : '#F67F22',
+                'startorange' : '#38BDF8',
+                'darkorange' : '#3B82F6',
                 danger: colors.rose,
                 primary: colors.blue,
                 success: colors.green,
