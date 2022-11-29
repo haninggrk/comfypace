@@ -46,8 +46,8 @@ class OpenCloseMilestone extends Component
         $transaction = new pointTransaction();
         $transaction->student_id = $studentProgress->student->id;
         $transaction->employee_id = Auth::user()->id;
-        $transaction->point = ($studentProgress->milestone->point);
-        $transaction->note = "Open Milestone ID " . $studentProgress->milestone->id;
+        $transaction->point = -($studentProgress->milestone->point);
+        $transaction->note = "Close Milestone ID " . $studentProgress->milestone->id;
         if ($transaction->save() && $studentProgress->delete()) {
             $studentProgress->student->StudentDetail->decrement('point', $transaction->point);
         }
