@@ -50,7 +50,7 @@ class StudentRewardTransactionController extends Controller
             $transaction = new pointTransaction;
             $transaction->student_id = $request->student;
             $transaction->employee_id = User::find($request->student)->id;
-            $transaction->point = $request->point;
+            $transaction->point = -($request->point);
             $transaction->note = "Tukar Reward";
             if($transaction->save()){
                     $student->decrement('point',$request->point);

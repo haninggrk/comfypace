@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 
 use App\Models\StudentProgress;
@@ -9,6 +10,8 @@ use App\Models\User;
 
 use App\Http\Requests\StoreStudentProgressRequest;
 use App\Http\Requests\UpdateStudentProgressRequest;
+use App\Models\pointTransaction;
+use Auth;
 
 class StudentProgressController extends Controller
 {
@@ -41,12 +44,26 @@ class StudentProgressController extends Controller
     public function store(Request $request)
     {
         $student = User::find($request->student_id)->StudentDetail;
-        $student->increment('point',$request->point);
         $StudentProgress = new StudentProgress;
         $StudentProgress->student_id = $request->student_id;
         $StudentProgress->milestone_id = $request->milestone_id;
-        $StudentProgress->save();
-        return redirect(url()->previous()."#goHere"); 
+        if ($StudentProgress->save()) {
+            $transaction = new pointTransaction;
+            $transaction->student_id = $request->student_id;
+            $transaction->employee_id = Auth::user()->id;
+            $transaction->point = ($request->point);
+            $transaction->note = "Open Milestone ID " . $request->milestone_id;
+            if ($transaction->save()) {
+                $student->increment('point', $request->point);
+            }
+        }
+
+
+
+
+
+
+        return redirect(url()->previous() . "#goHere");
     }
 
     /**
@@ -92,8 +109,17 @@ class StudentProgressController extends Controller
     public function destroy($id)
     {
         $studentProgress = StudentProgress::find($id);
-        $studentProgress->student->StudentDetail->decrement('point',$studentProgress->milestone->point);
-        $studentProgress->delete();
-        return redirect(url()->previous()."#goHere");
+
+
+        $transaction = new pointTransaction;
+        $transaction->student_id = $studentProgress->student->id;
+        $transaction->employee_id = Auth::user()->id;
+        $transaction->point = ($studentProgress->milestone->point);
+        $transaction->note = "Open Milestone ID " . $studentProgress->milestone->id;
+        if ($transaction->save() && $studentProgress->delete()) {
+            $studentProgress->student->StudentDetail->decrement('point', $transaction->point);
+        }
+
+        return redirect(url()->previous() . "#goHere");
     }
 }
