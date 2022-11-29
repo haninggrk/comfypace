@@ -82,21 +82,21 @@
 
         <div class=" bg-gradient-to-l from-startorange to-darkorange shadow overflow-hidden sm:rounded-lg">
   <div class="px-4 py-5 sm:px-6">
-    <h3 class="text-lg leading-6 font-medium text-white">Project Information</h3>
+    <h3 class="text-lg leading-6 font-medium text-white">Modul/Project Information</h3>
     <p class="mt-1 max-w-2xl text-sm text-gray-50">{{$project->course->course}}</p>
   </div>
   <div class="border-t border-gray-200">
     <dl>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Project Name</dt>
+        <dt class="text-sm font-medium text-gray-500">Modul/Project Name</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$project->project_title}}</dd>
       </div>
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Project Description</dt>
+        <dt class="text-sm font-medium text-gray-500">Modul/Project Description</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$project->description}}</dd>
       </div>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Project Example URL</dt>
+        <dt class="text-sm font-medium text-gray-500">Modul/Project Example URL</dt>
         <dd class="mt-1 text-sm  mt-5text-gray-900 sm:mt-0 sm:col-span-2"><a>{{$project->example_url}}</a></dd>
       </div>
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -614,33 +614,33 @@
             
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Point</label>
-                          <input type="number" name="point" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="number" name="point" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Student Modul</label>
-                          <input type="text" name="studentmodul_url" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="studentmodul_url" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Video URL</label>
-                          <input type="text" name="video_url" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="video_url" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Order Number</label>
-                          <input type="number" name="orderno" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="number" name="orderno" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-4">
-                          <label for="email-address" class="block text-sm font-medium text-gray-700">Project</label>
+                          <label for="email-address" class="block text-sm font-medium text-gray-700">Modul/Project</label>
                           <input type="hidden" value="{{$project->id}}" name="project_id">
-                          <input type="text" readonly name="" id="email-address" value="{{$project->project_title}}" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" readonly name="" id="email-address" value="{{$project->project_title}}"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
    
                         <div class="col-span-6 sm:col-span-3">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Video Start</label>
-                          <input type="text" placeholder="00:00:00" name="video_start" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" placeholder="00:00:00" name="video_start" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-3">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Vide End</label>
-                          <input type="text" placeholder="00:00:00"  step="1"  name="video_end" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" placeholder="00:00:00"  step="1"  name="video_end" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                       </div>
                   </div>

@@ -88,6 +88,9 @@ class User extends Authenticatable
     public function RewardTransaction(){
         return $this->hasMany(StudentRewardTransaction::class,'student_id');
     }
+    public function PointTransactions(){
+        return $this->hasMany(pointTransaction::class,'student_id');
+    }
 
     public function roleName(){
         if($this->role == 1){

@@ -18,9 +18,11 @@ class ClassController extends Controller
     public function index()
     {
         if(auth()->user()->role == 2){
-        return view('manageClass')->with('classList', auth()->user()->ClassMembers()->get());
-    }elseif(auth()->user()->role == 1){
-        return view('manageClass')->with('classList', auth()->user()->SupClasses()->get());
+        return view('manageClass')->with('classList', auth()->user()->ClassMembers);
+    }elseif(auth()->user()->role == 1 && auth()->user()->EmployeeDetail->position_id<3){
+        return view('manageClass')->with('classList', auth()->user()->SupClasses);
+    }else{
+        return view('manageClass')->with('classList', Classes::all());
     }
     }
 
@@ -66,7 +68,6 @@ class ClassController extends Controller
         return view('showClass')
         ->with('class',Classes::find($id))
         ->with('studentList',User::all()->where('role','=',2)->whereNotIn('id',Classes::find($id)
-        ->ClassMembers->pluck('student_id')))->with('registeredStudent',User::all()->where('role','=',2)->whereIn('id',Classes::find($id)
         ->ClassMembers->pluck('student_id')));
     }
 

@@ -55,11 +55,13 @@
           <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <h3 class="text-3xl mb-5 mt-5">Project/Modul List</h3>
+
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                   <table class="min-w-full divide-y divide-gray-200">
                     <thead class=" bg-gradient-to-l from-startorange to-darkorange">
                       <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Project</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Modul / Project</th>
                         <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Progress</th>
                         <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Point Earned</th>
                         <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Action</th>
@@ -67,7 +69,7 @@
                       </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                      @if(auth()->user()->role==2)
+                      @if(auth()->user()->role==2)  
               
                       @foreach($class->course->projects as $project)
                       @if($project->milestones->first() != null)
@@ -133,18 +135,22 @@
                    
                       
                        
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 inline-flex py-2 text-lg leading-5 font-semibold rounded-full bg-green-100 text-green-600"> Done </span>
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                          @if($project->milestones->sortByDesc('order_number')->first()->studentProgresses != null)
+                          <span class="px-2 inline-flex py-2 text-lg leading-5 font-semibold rounded-full bg-green-100 text-green-600"> </span>
+                          @else
+                          <span class="px-2 inline-flex py-2 text-lg leading-5 font-semibold rounded-full bg-gray-100 text-gray-600">Not Opened</span>
+                          @endif
                         </td>
                        
                       
              
                       
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
                          
                           <div class="text-sm text-gray-900">{{array_sum(collect($project->milestones->whereIn('id',(Auth::user()->progresses->pluck('milestone_id')->toArray())))->pluck('point')->toArray())}}</div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
                          
                          <a href="{{route('project.show',$project->id)}}?class={{$class->id}}"> <div class="text-sm text-blue-700">Open Project</div></a>
                         </td>
@@ -156,88 +162,51 @@
                     </tbody>
                   </table>
                 </div>
-                  @if(Auth()->user()->role == 1)
-                  <h3 class="mt-5">Registered Student</h3>
-                  <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
-			<thead class="text-white">
-				<tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-					<th class="p-3 text-left">Name</th>
-					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Add Point</th>
-					<th class="p-3 text-left" width="110px">Actions</th>
-				</tr>
-				<tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                <th class="p-3 text-left">Name</th>
-					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Add Point</th>
-					<th class="p-3 text-left" width="110px">Actions</th>
-				</tr>
-                <tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                <th class="p-3 text-left">Name</th>
-					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Add Point</th>
-                  <th class="p-3 text-left" width="110px">Actions</th>
-              </tr>
-                <tr class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                <th class="p-3 text-left">Name</th>
-					<th class="p-3 text-left">School</th>
-                    <th class="p-3 text-left">Add Point</th>
-                  <th class="p-3 text-left" width="110px">Actions</th>
-              </tr>
-			</thead>
-			<tbody class="flex-1 sm:flex-none">
-                
-        @foreach($registeredStudent as $student)
-        
-				<tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-					<td class="border-grey-light border hover:bg-gray-100 p-3">{{$student->name}}</td>
-					<td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{{$student->studentDetail->school->school}}</td>
-					<td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
-          <form action="{{route('point.store')}}" method="POST">
-              @csrf
-            <input type="hidden" name="student_id" value="{{$student->id}}">
-            <div class="mb-1">
-              Point: 
-            <input type="number" name="point">
-</div><div>
-  Note: 
-            <input type="text" name="note"></div>
-            <button type="submit" class="mb-5 inline-block bg-indigo-500 mt-2 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Add</button> 
-          </form>
-          </td>
-          
-         
-          
-					<td class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">              
-            <form action="{{route('classmember.destroy2')}}" method="POST">
-              @csrf
-            <input type="hidden" name="student_id" value="{{$student->id}}">
-            <input type="hidden" name="class_id" value="{{$class->id}}">
-            <button type="submit" class=" mb-5 bg-indigo-500 mt-2 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Remove</button> 
-          </form>
-          </td>
-        </tr>
-    
-
-        @endforeach
-			</tbody>
-		</table>
-   
-                  <div class="col-span-6 sm:col-span-2">
-                    <form action="{{route('classmember.store')}}" method="POST">
-                    @CSRF
-                    <input type="hidden" name="class_id" value="{{$class->id}}">
-                    <label for="country" class="block text-sm font-medium text-gray-700 mt-4">Register Student to {{$class->classname}}</label>
-                
-                    <select id="country" name="student_id" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    @foreach($studentList as $student)
-                    <option value="{{$student->id}}">{{$student->name}}</option>
-                    @endforeach
-                    </select>
-                    <button type="submit" class=" mb-5 bg-indigo-500 mt-2 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Add Student</button> 
-                  </div>
-                </form>
-                @endif
+                 <div class="mt-5">
+                  <!--
+ This example requires Tailwind CSS v2.0+ 
+ 
+ This example requires some changes to your config:
+ 
+ ```
+ // tailwind.config.js
+ module.exports = {
+ // ...
+ plugins: [
+ // ...
+ require('@tailwindcss/forms'),
+ ],
+ }
+ ```
+-->
+<div>
+</div>
+@if(Auth::user()->role==1)
+<h3 class="text-3xl mb-5 mt-10">Registered Student</h3>
+<div class="">
+  @php($i = $class->id)
+  <livewire:show-student-progress :id=$i />
+  
+  @if(Auth::user()->EmployeeDetail->position_id == 3)
+  <div class="mt-5">
+  <form method="POST" action="{{route('classmember.store')}}  ">
+  <label for="location" class="block text-sm font-medium text-gray-700">Add Student</label>
+  @csrf
+  <input type="hidden" value="{{$class->id}}" name="class_id">
+  <select id="location" name="student_id" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+    @foreach ($studentList as $student)
+        <option value="{{$student->id}}">{{$student->name}}</option>
+    @endforeach
+  </select>
+ </div>
+ @endif
+ <x-jet-button class="mt-2">
+  ADD
+ </x-jet-button>
+</div>
+@endif
+ 
+                 </div>
                 </div>
               </div>
             </div>

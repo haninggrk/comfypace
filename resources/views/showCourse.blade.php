@@ -58,9 +58,9 @@
                 <!-- More files... -->
               </ul>
               <div class="flex items-center mt-16 justify-between">
-                <span class=" text-3xl font-medium mb-5" style="justify-self: start">Project List</span>
+                <span class=" text-3xl font-medium mb-5" style="justify-self: start">Modul/Project List</span>
       
-                <x-jet-button id="myBtn2"  class="ml-5 mb-5 py-2 md:p-2 text-md md:text-md">+ Add Project</x-jet-button>
+                <x-jet-button id="myBtn2"  class="ml-5 mb-5 py-2 md:p-2 text-md md:text-md">+ Add Modul / Project</x-jet-button>
                 </div>
               <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                 @foreach ($projectList as $project)
@@ -181,16 +181,16 @@
                         </div>
                         <div class="col-span-6 sm:col-span-3">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">End Date</label>
-                          <input type="date" name="enddate" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="date" name="enddate" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-6">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Description</label>
-                          <input type="text" name="description" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="description" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="course" class="block text-sm font-medium text-gray-700">Course</label>
-                          <input value="{{$course->course}}" readonly type="text" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                          <input value="{{$course->id}}" name="course" readonly type="hidden" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input value="{{$course->course}}" readonly type="text" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input value="{{$course->id}}" name="course" readonly type="hidden" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                         </div>
 
@@ -288,7 +288,7 @@
             </svg>
           </div>
           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Add Project</h3>
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Add Modul/Project</h3>
             <div class="mt-2">
               <div class="bg-white sm:rounded-lg ">
                 <div class="">

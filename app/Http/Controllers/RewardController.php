@@ -16,7 +16,7 @@ class RewardController extends Controller
      */
     public function index()
     {
-        return view('showReward')->with('rewardList',reward::all());
+        return view('showReward')->with('rewardList',reward::orderBy('order_number')->get());
     }
 
     
@@ -43,6 +43,7 @@ class RewardController extends Controller
         $reward->price = $request->price;
         $reward->stock = $request->stock;
         $reward->img = $request->img;
+        $reward->order_number = $request->order_number;
         $reward->save();
         return back();
     }

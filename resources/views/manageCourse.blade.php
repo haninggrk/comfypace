@@ -126,23 +126,23 @@
                         </div>
                         <div class="col-span-6 sm:col-span-6">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Course Description</label>
-                          <input type="text" name="description" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="description" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                           <div class="col-span-6 sm:col-span-6">
                               <label for="email-address" class="block text-sm font-medium text-gray-700">Course Image</label>
-                              <input type="text" name="image" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                              <input type="text" name="image" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                           </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Total Meets</label>
-                          <input type="number" name="totalmeets" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="number" name="totalmeets" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Age Requirement</label>
-                          <input type="text" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="age_requirement" placeholder="Ex: 7-16 Tahun" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
                           <label for="email-address" class="block text-sm font-medium text-gray-700">Application</label>
-                          <input type="text" name="application" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          <input type="text" name="application" id="email-address"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
 

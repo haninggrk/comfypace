@@ -17,6 +17,7 @@ class CreateStudentProjectsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('student_id');
+            $table->integer('order_number')->default(9999);
             $table->text('submission_url')->nullable();
             $table->unsignedBigInteger('project_id');
             $table->text('submission_title')->nullable();

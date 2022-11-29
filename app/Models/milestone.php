@@ -9,4 +9,9 @@ class milestone extends Model
 {
     use HasFactory;
     
+public function studentProgresses(){
+    return $this->hasMany(studentProgress::class,'milestone_id');
 }
+
+}
+

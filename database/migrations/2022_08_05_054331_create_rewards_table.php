@@ -18,6 +18,7 @@ class CreateRewardsTable extends Migration
             $table->timestamps();
             $table->string('reward');
             $table->string('price');
+            $table->int('order_number')->default(9999);
             $table->text('img')->nullable();
             $table->integer('stock')->default(999);
         });

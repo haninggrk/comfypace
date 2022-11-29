@@ -209,6 +209,43 @@
   </div>
   
 @endif
+
+
+<table class="min-w-full mt-5 divide-y divide-gray-200">
+  <thead class=" bg-gradient-to-l from-startorange to-darkorange">
+      <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Date
+          </th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">
+              Note
+          </th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">
+              Amount
+          </th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">
+            Trigger
+        </th>
+      </tr>
+  </thead>
+  <tbody>
+      @foreach ($student->PointTransactions as $transaction)
+          <tr class="bg-white">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-left font-medium text-gray-900">{{ $transaction->created_at }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">
+                  {{ $transaction->note}}</td>
+                 
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">{{ $transaction->point }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">{{ $transaction->employee->name }}</td>
+
+          </tr>
+      @endforeach
+  </tbody>
+</table>
+
+
+
+
 <h3 class="text-3xl mt-20">{{$student->name}}'s Project</h3>
 <ul role="list"
 class="grid mt-5 grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
