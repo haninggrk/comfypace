@@ -30,6 +30,7 @@ use App\Models\StudentProject;
 |
 */
 Route::get('/profile/myproject/{id}',[StudentProjectController::class, 'show'])->name('submission.show');
+Route::POST('/reward/editupdate',[RewardController::class, 'editUpdate'])->name('reward.editUpdate');
 
 
 Route::get('/', function () {

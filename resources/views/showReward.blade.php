@@ -15,7 +15,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <nav class="flex mb-5 " aria-label="Breadcrumb">
+            <nav class="    lex mb-5 " aria-label="Breadcrumb">
                 <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
                     <li class="flex">
                         <div class="flex items-center">
@@ -98,17 +98,18 @@
                                     class="relative group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
                                     <img src="{{ $reward->img }}" alt=""
                                         class="object-cover pointer-events-none group-hover:opacity-75">
-                           
+
                                     <button type="button" class="absolute inset-0 focus:outline-none">
                                         <span class="sr-only"></span>
                                     </button>
                                 </div>
                                 </a>
                             </form>
-                            <a href="">
-                                <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                                    {{ $reward->reward }}</p>
-                            </a>
+
+                            <p class="mt-2 block text-sm font-medium text-gray-900 truncate">
+                                    {{ $reward->reward }} <a>( <span id="editBtn" onclick="editNow({{$reward}})"  class="text-blue-500">Edit</span> </a>)
+                            </p>
+
                             <p class="block text-sm font-medium text-gray-500 pointer-events-none">Price:
                                 {{ $reward->price }}
                                 | Stock Left : {{ $reward->stock }}</p>
@@ -248,9 +249,133 @@
     </div>
 </div>
 
+{{-- Modal Edit --}}
+<div id="myModal2" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" style="display: none"
+    role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!--
+          Background overlay, show/hide based on modal state.
+
+          Entering: "ease-out duration-300"
+            From: "opacity-0"
+            To: "opacity-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100"
+            To: "opacity-0"
+        -->
+        <div id="" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span id="" class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true">&#8203;</span>
+
+        <!--
+          Modal panel, show/hide based on modal state.
+
+          Entering: "ease-out duration-300"
+            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            To: "opacity-100 translate-y-0 sm:scale-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100 translate-y-0 sm:scale-100"
+            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        -->
+        <div id=""
+            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div
+                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                        <!-- Heroicon name: outline/exclamation -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-700" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                                d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+                        </svg>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Edit Reward</h3>
+                        <div class="mt-2">
+                            <div class="bg-white sm:rounded-lg ">
+                                <div class="">
+                                    <div class="mt-5 md:mt-0 md:col-span-2">
+                                        <form action="{{ route('reward.editUpdate') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" value="" id="rewardId" name="id">
+                                            <div class="grid grid-cols-6 gap-6">
+                                                <div class="col-span-6 sm:col-span-2">
+                                                    <label for="first-name"
+                                                        class="block text-sm font-medium text-gray-700">Reward
+                                                        Name</label>
+                                                    <input id="rewardName" type="text" name="reward" 
+                                                       value=""
+                                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                </div>
+
+                                                <div class="col-span-6 sm:col-span-2">
+                                                    <label for="last-name"
+                                                        class="block text-sm font-medium text-gray-700">Price</label>
+                                                    <input id="rewardPrice" type="number" name="price" 
+                                                        autocomplete="family-name"
+                                                        value =""
+                                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                </div>
+
+                                                <div   class="col-span-6 sm:col-span-2">
+                                                    <label for="email-address"
+                                                        class="block text-sm font-medium text-gray-700">Stock</label>
+                                                    <input type="number" name="stock" id="rewardStock"
+                                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                </div>
+                                                <div class="col-span-3 sm:col-span-3">
+                                                    <label for="first-name"
+                                                        class="block text-sm font-medium text-gray-700">Image
+                                                        Link</label>
+                                                    <input id="rewardImage" type="text" name="img" 
+                                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                                                </div>
+                                                <div class="col-span-3 sm:col-span-3">
+                                                    <label for="first-name"
+                                                        class="block text-sm font-medium text-gray-700">Order Number
+                                                    </label>
+                                                    <input type="number" name="order_number" id="rewardOrder"
+                                                        autocomplete="given-name"
+                                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                                                </div>
+
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="submit"
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Changes
+                </button>
+                </form>
+
+                <button type="button"
+                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm closexx">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- Modal --}}
+
+
 <script>
     // Get the modal
+    var edit = 0;
     var modal = document.getElementById("myModal");
+    var editmodal = document.getElementById("myModal2");
 
 
     // Get the button that opens the modal
@@ -259,10 +384,25 @@
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
+    var spanxx = document.getElementsByClassName("closexx")[0];
 
     // When the user clicks on the button, open the modal
     addBtn.onclick = function() {
         modal.style.display = "block";
+
+    }
+
+    function editNow($data) {
+        document.getElementById("rewardId").value = $data["id"];
+
+        document.getElementById("rewardName").value = $data["reward"];
+        document.getElementById("rewardPrice").value = $data["price"];
+
+        document.getElementById("rewardStock").value = $data["stock"];
+        document.getElementById("rewardImage").value = $data["img"];
+        document.getElementById("rewardOrder").value = $data["order_number"];
+
+        editmodal.style.display = "block";
 
     }
 
@@ -271,7 +411,9 @@
     span.onclick = function() {
         modal.style.display = "none";
     }
-
+    spanxx.onclick = function() {
+        editmodal.style.display = "none";
+    }
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {

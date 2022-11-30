@@ -16,10 +16,10 @@ class RewardController extends Controller
      */
     public function index()
     {
-        return view('showReward')->with('rewardList',reward::orderBy('order_number')->get());
+        return view('showReward')->with('rewardList', reward::orderBy('order_number')->get());
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -56,7 +56,6 @@ class RewardController extends Controller
      */
     public function show(Request $reward)
     {
-
     }
 
     /**
@@ -65,9 +64,9 @@ class RewardController extends Controller
      * @param  \App\Models\reward  $reward
      * @return \Illuminate\Http\Response
      */
-    public function edit(reward $reward)
+    public function edit(Request $request)
     {
-        //
+    
     }
 
     /**
@@ -77,9 +76,16 @@ class RewardController extends Controller
      * @param  \App\Models\reward  $reward
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdaterewardRequest $request, reward $reward)
+    public function editUpdate(Request $request)
     {
-        //
+        $reward = Reward::find($request->id);
+        $reward->reward = $request->reward;
+        $reward->price = $request->price;
+        $reward->stock = $request->stock;
+        $reward->img = $request->img;
+        $reward->order_number = $request->order_number;
+        $reward->save();
+        return back();
     }
 
     /**
