@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\milestone;
 use Illuminate\Http\Request;
 use App\Models\ProjectMilestone;
 use App\Models\User;
@@ -120,5 +121,18 @@ class MilestoneController extends Controller
     {
         $milestone = ProjectMilestone::find($id);
         $milestone->delete();
+    }
+    public function editUpdate(Request $request)
+    {
+        $milestone = ProjectMilestone::find($request->id);
+        $milestone->video_url = $request->video_url;
+        $milestone->studentmodul_url = $request->studentmodul_url;
+        $milestone->milestone = $request->milestone;
+        $milestone->description = $request->description;
+        $milestone->point = $request->point;
+        $milestone->orderno = $request->orderno;
+
+        $milestone->save();
+        return back();
     }
 }

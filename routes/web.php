@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CertificateController;
 use Illuminate\Support\Facades\Route;
 use App\Models\student;
 use App\Models\school;
@@ -30,7 +31,7 @@ use App\Models\StudentProject;
 |
 */
 Route::get('/profile/myproject/{id}',[StudentProjectController::class, 'show'])->name('submission.show');
-Route::POST('/reward/editupdate',[RewardController::class, 'editUpdate'])->name('reward.editUpdate');
+
 
 
 Route::get('/', function () {
@@ -50,6 +51,7 @@ Route::post('/classmember/delete',[ClassMemberController::class, 'destroy'])->na
 Route::get('/raisehand',[MilestoneController::class, 'raiseHand'])->name('raiseHand');
 Route::get('/destroyhand/{id}',[MilestoneController::class, 'destroyHand'])->name('destroyHand');
 Route::post('/studentproject/submit',[StudentProjectController::class, 'store2'])->name('studentproject.store2');
+Route::get('/sertifikat/generator',[CertificateController::class, 'index'])->name('certificate');
 
 
 
@@ -59,13 +61,14 @@ Route::middleware([
     'verified'
 ])->group(function () {
 
-
+    Route::POST('/reward/editupdate',[RewardController::class, 'editUpdate'])->name('reward.editUpdate');
+    Route::POST('/milestone/editupdate',[MilestoneController::class, 'editUpdate'])->name('milestone.editUpdate');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('aaa');
     Route::get('/profile/myproject',[StudentProjectController::class, 'indexStudent'])->name('submission.indexStudent');
-    
+
 
     Route::resources([
         'students' => StudentDetailController::class,

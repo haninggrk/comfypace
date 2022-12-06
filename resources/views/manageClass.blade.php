@@ -80,7 +80,7 @@
                                 @endphp
                                 <div
                                     class="group block w-full aspect-video rounded-lg bg-gray-200 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                                    
+
                                     <a class="hover:opacity-75 " href="{{ route('classes.show', $class->id) }}">
                                         <img src="{{ $random }}" alt=""
                                             class="object-contain pointer-events-none ">
@@ -103,7 +103,8 @@
                     @foreach ($classList as $class)
                         <li class="relative">
                             <div class="bg-white p-4 rounded-md shadow-md">
-                                <div class="text-center mb-2 text-white rounded-sm bg-blue-500"> {{ $class->course->course }}</div>
+                                <div class="text-center mb-2 text-white rounded-sm bg-blue-500">
+                                    {{ $class->course->course }}</div>
                                 @php
                                     $random = $items[fmod(4, 3)];
                                 @endphp
@@ -118,7 +119,8 @@
                                     <div class="break-all col-span-2 min-w-0">
                                         <p
                                             class=" break-all  block text-md sm:text-sm md:text-xl font-medium text-blue-500 truncate pointer-events-none">
-                                            {{ $class->classname }}</p>
+                                            {{ $class->classname }} ( <a onclick=""> <span class="text-pink-500">Edit</span></a> )
+                                        </p>
                                         <p class="block text-sm font-medium text-gray-800 pointer-events-none">
                                             {{ $class->supervisor->name }}</p>
                                     </div>
