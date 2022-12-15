@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCertificateRequest;
 use App\Http\Requests\UpdateCertificateRequest;
 use App\Models\Certificate;
+use App\Models\Project;
 use App\Models\StudentProject;
 use App\Models\User;
 
@@ -17,9 +18,7 @@ class CertificateController extends Controller
      */
     public function index()
     {
-        foreach (User::where('role', 2) as $user) {
-            return $user->name;
-        }
+      return view('sertifikat')->with('studentList',User::where('role',2)->get())->with('projectList',Project::all());
     }
 
     /**

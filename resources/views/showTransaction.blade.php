@@ -76,6 +76,8 @@
                       <table class="min-w-full divide-y divide-gray-200">
                         <thead class=" bg-gradient-to-l from-startorange to-darkorange">
                           <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Reward Image</th>
+
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Reward Name</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Price</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Status</th>
@@ -113,7 +115,8 @@
                           @endif
                           @if(Auth::user()->role == 1)
                           @foreach($transactionList as $reward)
-                          <tr class="bg-white">
+                          <tr class="@if($loop->even)bg-white @else bg-gray-100 @endif">
+                            <td><img class="h-15 w-15" src="{{$reward->reward->img}}"></td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$reward->reward->reward}}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$reward->reward->price}}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@if($reward->status_id == 0)On Progress @else Done @endif</td>
