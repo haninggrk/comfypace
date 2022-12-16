@@ -210,7 +210,7 @@
   
 @endif
 
-
+<h2 class="mt-5 text-2xl text-blue-500">Student Point: {{$student->StudentDetail->point}} </h2>
 <table class="min-w-full mt-5 divide-y divide-gray-200">
   <thead class=" bg-gradient-to-l from-startorange to-darkorange">
       <tr>
@@ -229,6 +229,7 @@
       </tr>
   </thead>
   <tbody>
+    
       @foreach ($student->PointTransactions as $transaction)
           <tr class="bg-white">
               <td class="px-6 py-4 whitespace-nowrap text-sm text-left font-medium text-gray-900">{{ $transaction->created_at }}</td>
